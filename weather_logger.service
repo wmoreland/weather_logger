@@ -1,0 +1,9 @@
+[Unit]
+Description=Run rtl_433 for a period of time followed by a python script to resample the data and add to database
+
+[Service]
+User=yourusername
+ExecStart=/bin/bash -c "timeout 24s rtl_433 -f 868222000 -R 119 -F csv:/path/to/put/weather_log.csv ; /usr/bin/python /path/to/weather_resampler.py"
+
+[Install]
+WantedBy=multi-user.target
